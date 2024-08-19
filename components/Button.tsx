@@ -39,11 +39,6 @@ export const PrimaryButton: React.FC<CustomButtonProps> = ({
     outputRange: ["black", "#333"],
   });
 
-  const textColor = animatedValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: ["white", "#ccc"],
-  });
-
   return (
     <Pressable
       style={{ width: "100%" }}
@@ -52,9 +47,7 @@ export const PrimaryButton: React.FC<CustomButtonProps> = ({
       onPressOut={handlePressOut}
     >
       <Animated.View style={[styles.button, { backgroundColor }]}>
-        <Animated.Text style={[styles.text, { color: textColor }]}>
-          {title}
-        </Animated.Text>
+        <Animated.Text style={styles.text}>{title}</Animated.Text>
       </Animated.View>
     </Pressable>
   );
@@ -64,7 +57,7 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 99,
     alignItems: "center",
-    paddingVertical: 8,
+    paddingVertical: 12,
     width: "100%",
   },
   text: {
