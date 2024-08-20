@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TextInput, View, Alert } from "react-native";
 import { useForm, Controller } from "react-hook-form";
-import { PrimaryButton } from "@/components/Button";
+import { PrimaryButton } from "@/components/PrimaryButton";
 import { supabase } from "@/lib/supabase";
 
 interface FormData {
@@ -13,15 +13,16 @@ export default function SignUp() {
     control,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm<FormData>({
     defaultValues: {
       password: "",
       email: "",
     },
   });
+  const password = watch("password");
 
   async function onSubmit(data: FormData) {
-    console.log(data);
     const { error } = await supabase.auth.signUp({
       email: data.email,
       password: data.password,
@@ -88,11 +89,9 @@ export default function SignUp() {
             name="passwordConfirm"
             control={control}
             rules={{
-              required: "Password is required",
-              minLength: {
-                value: 6,
-                message: "Password must be at least 6 characters long",
-              },
+              required: "Confirm Password is required",
+              validate: (value) =>
+                value === password || "Passwords do not match",
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
@@ -107,7 +106,7 @@ export default function SignUp() {
             )}
           />
           <Text style={styles.errorMessage}>
-            {Boolean(errors.password) && errors.password?.message}
+            {Boolean(errors.passwordConfirm) && errors.passwordConfirm?.message}
           </Text>
         </View>
       </View>

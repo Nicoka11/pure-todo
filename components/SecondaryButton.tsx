@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import {
   Pressable,
   Text,
@@ -12,7 +12,7 @@ interface CustomButtonProps {
   onPress: (event: GestureResponderEvent) => void;
 }
 
-export const PrimaryButton: React.FC<CustomButtonProps> = ({
+export const SecondaryButton: React.FC<CustomButtonProps> = ({
   title,
   onPress,
 }) => {
@@ -36,7 +36,7 @@ export const PrimaryButton: React.FC<CustomButtonProps> = ({
 
   const backgroundColor = animatedValue.interpolate({
     inputRange: [0, 1],
-    outputRange: ["black", "#333"],
+    outputRange: ["transparent", "#33333380"],
   });
 
   return (
@@ -56,11 +56,13 @@ export const PrimaryButton: React.FC<CustomButtonProps> = ({
 const styles = StyleSheet.create({
   button: {
     borderRadius: 99,
+    borderColor: "#ccc",
+    borderWidth: 1,
     alignItems: "center",
     paddingVertical: 12,
     width: "100%",
   },
   text: {
-    color: "white",
+    color: "black",
   },
 });

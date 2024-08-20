@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TextInput, View, Alert } from "react-native";
 import { useForm, Controller } from "react-hook-form";
-import { PrimaryButton } from "@/components/Button";
+import { PrimaryButton } from "@/components/PrimaryButton";
 import { supabase } from "@/lib/supabase";
 
 interface FormData {
