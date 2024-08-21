@@ -1,25 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
-import { PrimaryButton } from "@/components/Button";
-import SignIn from "@/components/auth/SignIn";
-import { useState } from "react";
-import SignUp from "@/components/auth/SignUp";
+import { AuthGuard } from "@/components/auth/AuthGuard";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "@/lib/queryClient";
+import { Redirect } from "expo-router";
 
-export default function Index() {
-  const [hasAccount, setHasAccount] = useState(true);
-
-  return (
-    <View style={styles.container}>
-      <View style={styles.title}>
-        <Text style={{ ...styles.text, fontSize: 48 }}>PURE</Text>
-        <Text style={styles.text}>todo</Text>
-      </View>
-      {hasAccount ? <SignIn /> : <SignUp />}
-      <PrimaryButton
-        title={hasAccount ? "Register" : "Already Account ? Sign In"}
-        onPress={() => setHasAccount((s) => !s)}
-      />
-    </View>
-  );
+export default function App() {
+  return <Redirect href="/Home" />;
 }
 
 const styles = StyleSheet.create({

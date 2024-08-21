@@ -2,6 +2,8 @@ import { StyleSheet, Text, TextInput, View, Alert } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { PrimaryButton } from "@/components/PrimaryButton";
 import { supabase } from "@/lib/supabase";
+import { useRouter } from "expo-router";
+import { useMutation } from "@tanstack/react-query";
 
 interface FormData {
   password: string;
@@ -18,15 +20,24 @@ export default function SignIn() {
       email: "",
     },
   });
+  const router = useRouter();
+  const { error, data, mutate } = useMutation({
+    mutationFn: supabase.auth.signInWithPassword,
+  });
 
-  async function onSubmit(data: FormData) {
+  async function onSubmit(formData: FormData) {
     console.log(data);
-    const { error } = await supabase.auth.signInWithPassword({
-      email: data.email,
-      password: data.password,
+    mutate({
+      email: formData.email,
+      password: formData.password,
     });
 
-    if (error) Alert.alert(error.message);
+    console.log(data);
+
+    if (error) {
+      return Alert.alert(error.message);
+    }
+    router.replace("/projects");
   }
 
   return (
