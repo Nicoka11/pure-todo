@@ -9,7 +9,7 @@ import {
 
 interface CustomButtonProps {
   title: string;
-  onPress: (event: GestureResponderEvent) => void;
+  onPress?: (event: GestureResponderEvent) => void;
 }
 
 export const SecondaryButton: React.FC<CustomButtonProps> = ({

@@ -1,18 +1,16 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import SignIn from "@/components/auth/SignIn";
 import { useState } from "react";
 import SignUp from "@/components/auth/SignUp";
 import { SecondaryButton } from "@/components/SecondaryButton";
+import { Logo } from "@/components/Logo";
 
 export default function LoginPage() {
   const [hasAccount, setHasAccount] = useState(true);
 
   return (
     <View style={styles.container}>
-      <View style={styles.title}>
-        <Text style={{ ...styles.text, fontSize: 48 }}>PURE</Text>
-        <Text style={styles.text}>todo</Text>
-      </View>
+      <Logo />
       {hasAccount ? <SignIn /> : <SignUp />}
       <SecondaryButton
         title={hasAccount ? "Register" : "Already Account ? Sign In"}
@@ -30,15 +28,5 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 32,
     gap: 16,
-  },
-  title: {
-    flexDirection: "row",
-    width: "auto",
-    alignItems: "flex-end",
-  },
-  text: {
-    fontFamily: "ClashDisplay-Variable",
-    fontWeight: "800",
-    fontSize: 32,
   },
 });

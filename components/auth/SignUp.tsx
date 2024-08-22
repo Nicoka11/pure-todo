@@ -2,6 +2,7 @@ import { StyleSheet, Text, TextInput, View, Alert } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { PrimaryButton } from "@/components/PrimaryButton";
 import { supabase } from "@/lib/supabase";
+import { useSession } from "@/lib/auth/context";
 
 interface FormData {
   password: string;
@@ -20,15 +21,18 @@ export default function SignUp() {
       email: "",
     },
   });
+  const { signIn } = useSession();
   const password = watch("password");
 
   async function onSubmit(data: FormData) {
-    const { error } = await supabase.auth.signUp({
+    const { error, data: res } = await supabase.auth.signUp({
       email: data.email,
       password: data.password,
     });
 
     if (error) Alert.alert(error.message);
+
+    signIn(res.session);
   }
 
   return (

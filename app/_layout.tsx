@@ -1,18 +1,15 @@
-import { AuthGuard } from "@/components/auth/AuthGuard";
+import { SessionProvider } from "@/lib/auth/context";
 import { queryClient } from "@/lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { Stack } from "expo-router";
-import { PropsWithChildren } from "react";
+import { Slot } from "expo-router";
 
-export default function RootLayout({ children }: PropsWithChildren) {
+export default function Root() {
+  // Set up the auth context and render our layout inside of it.
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthGuard>
-        <Stack>
-          <Stack.Screen name="(tabs)" />
-          <Stack.Screen name="login" options={{ presentation: "modal" }} />
-        </Stack>
-      </AuthGuard>
+      <SessionProvider>
+        <Slot />
+      </SessionProvider>
     </QueryClientProvider>
   );
 }

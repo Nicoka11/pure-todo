@@ -29,7 +29,15 @@
     },
     "plugins": [
       "expo-router",
-      ["expo-font", { "fonts": ["./assets/fonts/ClashDisplay-Variable.ttf"] }]
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/ClashDisplay-Variable.ttf"
+          ]
+        }
+      ],
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true
