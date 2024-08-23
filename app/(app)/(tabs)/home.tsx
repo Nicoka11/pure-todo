@@ -1,8 +1,10 @@
 import { Text, View } from "react-native";
 import React from "react";
-import { Link } from "expo-router";
+import { useRouter } from "expo-router";
+import { SecondaryButton } from "@/components/SecondaryButton";
 
 export function Home() {
+  const router = useRouter();
   return (
     <View
       style={{
@@ -10,10 +12,14 @@ export function Home() {
         justifyContent: "center",
         alignItems: "center",
         width: "100%",
+        paddingHorizontal: 16,
       }}
     >
       <Text style={{ fontSize: 48 }}>home</Text>
-      <Link href="/(app)/logout">Log Out</Link>
+      <SecondaryButton
+        title="Log Out"
+        onPress={() => router.push("/(app)/logout")}
+      />
     </View>
   );
 }

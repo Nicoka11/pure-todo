@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
     borderRadius: 99,
     alignItems: "center",
     paddingVertical: 12,
-    width: "100%",
   },
   text: {
     color: "white",

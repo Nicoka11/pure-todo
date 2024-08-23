@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import {
   Pressable,
-  Text,
   StyleSheet,
   GestureResponderEvent,
   Animated,
@@ -60,7 +59,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     alignItems: "center",
     paddingVertical: 12,
-    width: "100%",
   },
   text: {
     color: "black",
